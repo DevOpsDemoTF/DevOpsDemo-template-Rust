@@ -1,4 +1,4 @@
-FROM rust:1.37-alpine
+FROM rust:1.37-alpine as build
 
 RUN cargo install cargo-junit
 
