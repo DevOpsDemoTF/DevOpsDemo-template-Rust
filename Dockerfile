@@ -1,11 +1,11 @@
 FROM rust:1.37-alpine as build
 
-RUN cargo install cargo-junit
+RUN cargo install --color never cargo-junit
 
 WORKDIR /app
 COPY . .
 
-RUN cargo build --release
+RUN cargo build --color never --release
 RUN cargo junit --name test-results.xml
 
 FROM alpine:3.10
