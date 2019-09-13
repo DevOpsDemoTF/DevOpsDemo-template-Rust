@@ -1,12 +1,12 @@
 FROM rust:1.37-alpine
 
-RUN cargo install cargo-test-junit
+RUN cargo install cargo-junit
 
 WORKDIR /app
 COPY . .
 
 RUN cargo build --release
-RUN cargo test-junit --name test-results.xml
+RUN cargo junit --name test-results.xml
 
 FROM alpine:3.10
 WORKDIR /app
