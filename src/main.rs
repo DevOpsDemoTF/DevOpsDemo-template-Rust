@@ -1,20 +1,18 @@
 #[macro_use]
 extern crate serde_derive;
 
-use http::status::StatusCode;
-use std::sync::Mutex;
-use tide::{error::ResultExt, response, App, Context, EndpointResult};
+#[macro_use]
+extern crate lazy_static;
 
-#[derive(Default)]
-struct State {}
+#[macro_use]
+extern crate prometheus;
 
-async fn handle_health_check(_cx: Context<State>) -> EndpointResult<String> {
-    Ok("".to_owned())
-}
+mod app;
+mod handlers;
+mod metrics;
 
 fn main() {
-    let mut app = App::with_state(State::default());
-    app.at("/health").get(handle_health_check);
-
+    metrics::init();
+    let app = app::new();
     app.run("0.0.0.0:8080").unwrap();
 }
