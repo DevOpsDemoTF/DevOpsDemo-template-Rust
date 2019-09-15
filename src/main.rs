@@ -8,8 +8,8 @@ use tide::{error::ResultExt, response, App, Context, EndpointResult};
 #[derive(Default)]
 struct State {}
 
-async fn handle_health_check(_cx: Context<State>) -> EndpointResult<()> {
-    Ok(())
+async fn handle_health_check(_cx: Context<State>) -> EndpointResult<String> {
+    Ok("".to_owned())
 }
 
 fn main() {
