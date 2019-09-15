@@ -14,3 +14,5 @@ Micro-service template to use with my [DevOpsDemo](https://github.com/DevOpsDemp
 * API/integration tests with docker-compose
 
 ### Links ###
+* [Tide Docs](https://docs.rs/tide/0.2.0/tide/struct.App.html)
+* [Web programming in Rust](https://github.com/gruberb/web-programming-in-rust)

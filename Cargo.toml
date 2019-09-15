@@ -6,4 +6,15 @@ edition = "2018"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+# using toolchain nightly-2019-09-05
 [dependencies]
+tide = "0.2.0"
+http = "0.1.18"
+futures-preview = { version = "0.3.0-alpha.18", features = ["compat"] }
+prometheus = "0.7.0"
+serde_json = "1.0.40"
+serde = "1.0.100"
+serde_derive = "1.0.100"
+
+[patch.crates-io]
+tide = { git = "https://github.com/rustasync/tide", rev = "af0b900" }
