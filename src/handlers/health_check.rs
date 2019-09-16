@@ -11,5 +11,5 @@ lazy_static! {
 
 pub async fn handle_health_check(_cx: Context<crate::app::State>) -> EndpointResult<String> {
     HEALTH_CHECK_COUNTER.inc();
-    Ok("".to_owned())
+    Ok("".to_string())
 }
