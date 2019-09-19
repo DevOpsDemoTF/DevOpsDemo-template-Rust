@@ -1,7 +1,4 @@
 #[macro_use]
-extern crate serde_derive;
-
-#[macro_use]
 extern crate lazy_static;
 
 #[macro_use(slog_o)]
@@ -15,16 +12,13 @@ extern crate prometheus;
 
 mod app;
 mod config;
-mod handlers;
-mod log;
 mod metrics;
 
 fn main() {
     let config = config::new();
     metrics::init();
-    log::init(&config);
 
-    info!("Service starting");
+    info!("Service has been started");
 
     let app = app::new(&config);
 

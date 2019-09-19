@@ -1,3 +1,4 @@
+use http::StatusCode;
 use prometheus::IntCounter;
 use tide::{Context, EndpointResult};
 
@@ -9,7 +10,12 @@ lazy_static! {
     .unwrap();
 }
 
-pub async fn handle_health_check(_cx: Context<crate::app::State>) -> EndpointResult<String> {
+pub async fn handler(cx: Context<super::SharedState>) -> EndpointResult<String> {
     HEALTH_CHECK_COUNTER.inc();
-    Ok("".to_string())
+    let state = cx.state().read().unwrap();
+    if state.healthy {
+        Ok("".to_string())
+    } else {
+        Err(StatusCode::INTERNAL_SERVER_ERROR.into())
+    }
 }
