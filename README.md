@@ -7,11 +7,11 @@ Micro-service template to use with my [DevOpsDemo](https://github.com/DevOpsDemo
 ### Features ###
 * Build in multi-stage Docker container
 * Configuration via environment variables
-* Status passed to API handlers
 * Logging in JSON
+* State passed to API handlers
 * Health-check endpoint
 * Prometheus metrics
-* Unit tests with xunit-compatible output
+* Unit tests with JUnit-compatible output
 * API/integration tests with docker-compose
 
 ### Links ###
