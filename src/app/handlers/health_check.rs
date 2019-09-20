@@ -1,5 +1,6 @@
 use http::StatusCode;
-use prometheus::IntCounter;
+use lazy_static::lazy_static;
+use prometheus::{opts, register_counter, register_int_counter, IntCounter};
 use tide::{Context, EndpointResult};
 
 lazy_static! {

@@ -3,6 +3,7 @@ use tide::App;
 
 mod handlers;
 mod state;
+
 pub type SharedState = RwLock<state::State>;
 
 pub fn new(config: &crate::config::Config) -> App<SharedState> {

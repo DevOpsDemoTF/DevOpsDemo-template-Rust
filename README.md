@@ -19,7 +19,6 @@ Micro-service template to use with my [DevOpsDemo](https://github.com/DevOpsDemo
 * [Web programming in Rust](https://github.com/gruberb/web-programming-in-rust)
 
 ### To-Do ###
-* Use stable Rust and Tide (when it becomes available)
+* Use stable Rust (1.39) and Tide (when it becomes available)
 * Switch to rust:stable-alpine base image
 * Make code more rusty
-* Improve module structure
