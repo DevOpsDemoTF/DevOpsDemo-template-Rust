@@ -2,7 +2,7 @@ use prometheus::{self, Encoder, TextEncoder};
 use std::thread;
 use tide::{App, Body, Context, EndpointResult};
 
-pub async fn handle_metrics(_cx: Context<()>) -> EndpointResult {
+async fn handle_metrics(_cx: Context<()>) -> EndpointResult {
     let encoder = TextEncoder::new();
     let metric_families = prometheus::gather();
     let mut buffer = vec![];

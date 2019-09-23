@@ -1,3 +1,4 @@
+use super::*;
 use http::StatusCode;
 use lazy_static::lazy_static;
 use prometheus::{opts, register_counter, register_int_counter, IntCounter};
@@ -13,7 +14,7 @@ lazy_static! {
 
 pub async fn handler(cx: Context<super::SharedState>) -> EndpointResult<String> {
     HEALTH_CHECK_COUNTER.inc();
-    let state = cx.state().read().unwrap();
+    let state = cx.state().read().map_err(|e| wrap_err(e))?;
     if state.healthy {
         Ok("".to_string())
     } else {

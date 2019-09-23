@@ -5,9 +5,11 @@ pub struct State {
     _logger_guard: slog_scope::GlobalLoggerGuard,
 }
 
-pub fn new(config: &crate::config::Config) -> State {
-    State {
-        healthy: true,
-        _logger_guard: log::init(config),
+impl State {
+    pub fn new(config: &crate::config::Config) -> State {
+        State {
+            healthy: true,
+            _logger_guard: log::init(config),
+        }
     }
 }

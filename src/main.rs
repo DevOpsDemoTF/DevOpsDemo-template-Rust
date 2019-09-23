@@ -1,3 +1,4 @@
+use config::Config;
 use slog_scope::info;
 
 mod app;
@@ -5,7 +6,7 @@ mod config;
 mod metrics;
 
 fn main() {
-    let config = config::new();
+    let config = Config::new();
     metrics::init();
 
     info!("Service has been started");

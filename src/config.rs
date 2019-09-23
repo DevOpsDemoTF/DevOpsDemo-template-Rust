@@ -3,13 +3,16 @@ use std::env;
 use std::io::Write;
 use std::str::FromStr;
 
+#[derive(Debug)]
 pub struct Config {
     pub log_level: Level,
 }
 
-pub fn new() -> Config {
-    Config {
-        log_level: log_level(),
+impl Config {
+    pub fn new() -> Config {
+        Config {
+            log_level: log_level(),
+        }
     }
 }
 
