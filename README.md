@@ -15,10 +15,5 @@ Micro-service template to use with my [DevOpsDemo](https://github.com/DevOpsDemo
 * API/integration tests with docker-compose
 
 ### Links ###
-* [Tide Docs](https://docs.rs/tide/0.2.0/tide/struct.App.html)
-* [Web programming in Rust](https://github.com/gruberb/web-programming-in-rust)
-
-### To-Do ###
-* Use stable Rust (1.39) and Tide (when it becomes available)
-* Switch to rust:stable-alpine base image
-* Make code more rusty
+* [Actix](https://actix.rs/)
+* [Actix is crazy fast](https://www.techempower.com/benchmarks/#section=data-r18&hw=ph&test=fortune)

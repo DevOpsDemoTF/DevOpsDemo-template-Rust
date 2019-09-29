@@ -1,27 +1,28 @@
+use actix_web::{web, App, HttpResponse, HttpServer};
 use prometheus::{self, Encoder, TextEncoder};
 use std::thread;
-use tide::{App, Body, Context, EndpointResult};
 
-async fn handle_metrics(_cx: Context<()>) -> EndpointResult {
+fn handle_metrics() -> HttpResponse {
     let encoder = TextEncoder::new();
     let metric_families = prometheus::gather();
     let mut buffer = vec![];
     encoder.encode(&metric_families, &mut buffer).unwrap();
 
-    Ok(http::Response::builder()
-        .status(http::status::StatusCode::OK)
-        .header("Content-Type", encoder.format_type())
-        .body(Body::from(buffer))
-        .unwrap())
+    HttpResponse::Ok()
+        .content_type(encoder.format_type())
+        .body(buffer)
 }
 
 pub fn init() {
-    let mut app = App::new();
-    app.at("/metrics").get(handle_metrics);
-    thread::spawn(move || {
+    thread::spawn(|| {
+        let server =
+            HttpServer::new(|| App::new().route("/metrics", web::get().to(handle_metrics)))
+                .bind("0.0.0.0:9102")
+                .expect("Can not bind to port 9102");
+
         slog_scope::scope(
             &slog_scope::logger().new(slog::o!("scope" => "prometheus")),
-            || app.run("0.0.0.0:9102").unwrap(),
+            || server.run().unwrap(),
         );
     });
 }
