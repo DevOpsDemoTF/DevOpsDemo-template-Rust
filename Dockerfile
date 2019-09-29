@@ -1,7 +1,8 @@
-FROM rust:1.38-alpine3.10 as build
+FROM ekidd/rust-musl-builder:stable as build
 WORKDIR /app
-RUN cargo install --color never cargo-junit
-COPY . .
+RUN sudo chown -R rust:rust . && \
+    cargo install --color never cargo-junit
+COPY --chown=rust:rust . .
 
 RUN cargo build --color never --release
 RUN cargo junit --name test-results.xml
